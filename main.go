@@ -116,7 +116,7 @@ func dumpRooms(api *slack.Client, dir string, rooms []string) {
 	if len(groups) > 0 {
 		for _, group := range groups {
 			channel := slack.Channel{}
-			channel.Channel = group.Group
+			channel.ID = group.ID
 			channel.Name = group.Name
 			channel.Created = group.Created
 			channel.Creator = group.Creator
@@ -163,7 +163,7 @@ func dumpChannels(api *slack.Client, dir string, rooms []string) []slack.Channel
 	}
 
 	for _, channel := range channels {
-		dumpChannel(api, dir, channel.Channel, channel.Name, "channel")
+		dumpChannel(api, dir, channel.ID, channel.Name, "channel")
 	}
 
 	return channels
@@ -189,7 +189,7 @@ func dumpGroups(api *slack.Client, dir string, rooms []string) []slack.Group {
 	}
 
 	for _, group := range groups {
-		dumpChannel(api, dir, group.Group, group.Name, "group")
+		dumpChannel(api, dir, group.ID, group.Name, "group")
 	}
 
 	return groups
